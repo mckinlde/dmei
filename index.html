@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Software Consulting Inquiry</title>
+  <title>Your Favorite Button</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
   <style>
     body {
@@ -17,21 +17,29 @@
       max-width: 700px;
       margin: auto;
       background: white;
-      padding: 2rem;
+      padding: 2.5rem;
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     h1 {
       text-align: center;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
       color: #333;
+    }
+
+    .tagline {
+      text-align: center;
+      color: #777;
+      margin-bottom: 2rem;
     }
 
     label {
       display: block;
       margin-top: 1rem;
       font-weight: bold;
-      color: #555;
+      color: #444;
     }
 
     input, textarea {
@@ -58,6 +66,7 @@
       border-radius: 6px;
       font-size: 1rem;
       cursor: pointer;
+      width: 100%;
     }
 
     button:hover {
@@ -65,19 +74,36 @@
     }
 
     .status {
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       font-weight: bold;
       text-align: center;
     }
 
     .success { color: green; }
     .error { color: red; }
+
+    .magic-description {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .emoji {
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>Start Your Project</h1>
+    <h1>Build Your Favorite Button</h1>
+    <p class="tagline">Turn your most hated task into a single click of joy ✨</p>
+    <p class="magic-description">
+      We build software that acts like a magic button — it opens browsers, fills out forms, sends emails, reads spreadsheets, and does the repetitive work you'd rather avoid.<br><br>
+      Tell us what task you wish you never had to do again, and we’ll build your Favorite Button — a tool that just does it. Auto🪄magically🪄.
+    </p>
+
     <form id="contact-form">
       <label for="from_name">Your Name</label>
       <input type="text" name="from_name" id="from_name" required />
@@ -85,29 +111,29 @@
       <label for="reply_to">Your Email</label>
       <input type="email" name="reply_to" id="reply_to" required />
 
-      <label for="automation_goal">What are you trying to automate?</label>
+      <label for="automation_goal">🪄 What do you want your Favorite Button to do?</label>
       <textarea name="automation_goal" id="automation_goal" required></textarea>
 
-      <label for="current_process">How do you do it now?</label>
+      <label for="current_process">📋 How do you currently do this task?</label>
       <textarea name="current_process" id="current_process" required></textarea>
 
-      <label for="time_cost">How long does it take you?</label>
+      <label for="time_cost">⏱️ How long does it take you?</label>
       <input type="text" name="time_cost" id="time_cost" required />
 
-      <label for="frequency">How often do you have to do it?</label>
+      <label for="frequency">🔁 How often do you do it?</label>
       <input type="text" name="frequency" id="frequency" required />
 
-      <label for="budget">What is your budget for the project?</label>
+      <label for="budget">💸 What's your budget?</label>
       <input type="text" name="budget" id="budget" required />
 
-      <button type="submit">Submit Inquiry</button>
+      <button type="submit">Send Inquiry</button>
       <div id="status" class="status"></div>
     </form>
   </div>
 
   <script>
     (function() {
-      emailjs.init("qNvLaal9x3n-ZKA-_"); // 🔁 Replace with your EmailJS public key
+      emailjs.init("qNvLaal9x3n-ZKA-_"); // Replace with your EmailJS public key
     })();
 
     const form = document.getElementById('contact-form');
@@ -118,11 +144,11 @@
 
       emailjs.sendForm('service_fs3y0od', 'template_default', this)
         .then(() => {
-          statusDiv.innerHTML = '<div class="success">✅ Your inquiry has been sent!</div>';
+          statusDiv.innerHTML = '<div class="success">✅ Your Favorite Button request has been sent!</div>';
           form.reset();
         }, (err) => {
           console.error('FAILED...', err);
-          statusDiv.innerHTML = '<div class="error">❌ Error sending message. Please try again.</div>';
+          statusDiv.innerHTML = '<div class="error">❌ Something went wrong. Please try again later.</div>';
         });
     });
   </script>
