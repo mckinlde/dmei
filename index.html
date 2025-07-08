@@ -3,47 +3,71 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Me</title>
+  <title>Software Consulting Inquiry</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
       padding: 2rem;
-      background: #f9f9f9;
     }
 
-    form {
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 8px;
-      max-width: 500px;
+    .container {
+      max-width: 700px;
       margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
-    input, textarea, button {
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input, textarea {
       width: 100%;
-      margin: 0.5rem 0;
       padding: 0.75rem;
+      margin-top: 0.5rem;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
     }
 
     button {
-      background-color: #4CAF50;
+      margin-top: 2rem;
+      background-color: #0077cc;
       color: white;
-      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #45a049;
+      background-color: #005fa3;
     }
 
-    .success, .error {
-      text-align: center;
+    .status {
       margin-top: 1rem;
       font-weight: bold;
+      text-align: center;
     }
 
     .success { color: green; }
@@ -52,18 +76,38 @@
 </head>
 <body>
 
-  <form id="contact-form">
-    <h2>Contact Me</h2>
-    <input type="text" name="from_name" placeholder="Your Name" required />
-    <input type="email" name="reply_to" placeholder="Your Email" required />
-    <textarea name="message" placeholder="Your Message" required></textarea>
-    <button type="submit">Send</button>
-    <div id="status"></div>
-  </form>
+  <div class="container">
+    <h1>Start Your Project</h1>
+    <form id="contact-form">
+      <label for="from_name">Your Name</label>
+      <input type="text" name="from_name" id="from_name" required />
+
+      <label for="reply_to">Your Email</label>
+      <input type="email" name="reply_to" id="reply_to" required />
+
+      <label for="automation_goal">What are you trying to automate?</label>
+      <textarea name="automation_goal" id="automation_goal" required></textarea>
+
+      <label for="current_process">How do you do it now?</label>
+      <textarea name="current_process" id="current_process" required></textarea>
+
+      <label for="time_cost">How long does it take you?</label>
+      <input type="text" name="time_cost" id="time_cost" required />
+
+      <label for="frequency">How often do you have to do it?</label>
+      <input type="text" name="frequency" id="frequency" required />
+
+      <label for="budget">What is your budget for the project?</label>
+      <input type="text" name="budget" id="budget" required />
+
+      <button type="submit">Submit Inquiry</button>
+      <div id="status" class="status"></div>
+    </form>
+  </div>
 
   <script>
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // replace with your EmailJS public key
+      emailjs.init("qNvLaal9x3n-ZKA-_"); // 🔁 Replace with your EmailJS public key
     })();
 
     const form = document.getElementById('contact-form');
@@ -74,11 +118,11 @@
 
       emailjs.sendForm('service_fs3y0od', 'template_default', this)
         .then(() => {
-          statusDiv.innerHTML = '<p class="success">Message sent successfully!</p>';
+          statusDiv.innerHTML = '<div class="success">✅ Your inquiry has been sent!</div>';
           form.reset();
         }, (err) => {
           console.error('FAILED...', err);
-          statusDiv.innerHTML = '<p class="error">Failed to send message. Try again.</p>';
+          statusDiv.innerHTML = '<div class="error">❌ Error sending message. Please try again.</div>';
         });
     });
   </script>
